@@ -1,6 +1,10 @@
 ﻿using Kuchejda.Exercise3;
 using System.Diagnostics;
 
+// Array is imported from csv file. For the uknown value is set 0 
+// Result is save in csv and display in console
+// link to repository: https://github.com/maciej-kuchejda/Kuchejda.OK
+
 int cellSize = 3;
 if (args.Any())
     cellSize = int.Parse(args[0]);

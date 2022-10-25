@@ -7,10 +7,17 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="NanoByte.SatSolver" Version="0.3.0" />
-    <PackageReference Include="org.sat4j.core" Version="2.3.600" />
-    <PackageReference Include="org.sat4j.pb" Version="2.3.600" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Google.OrTools" Version="9.4.1874" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="input.csv">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="output.csv">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
 
 </Project>

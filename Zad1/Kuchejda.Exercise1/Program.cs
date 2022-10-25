@@ -1,33 +1,36 @@
 ﻿// See https://aka.ms/new-console-template for more information
-using java.io;
-using org.sat4j.core;
-using org.sat4j.pb;
-using org.sat4j.reader;
-using org.sat4j.specs;
+using Google.OrTools.ConstraintSolver;
 
-int MAXVAR = 1000000;
-int NBCLAUSES = 500000;
+Solver solver = new Solver("Exercise1");
 
-IPBSolver solver = SolverFactory.newDefault();
-
-// prepare the solver to accept MAXVAR variables. MANDATORY for MAXSAT solving
-solver.newVar(MAXVAR);
-solver.setExpectedNumberOfClauses(NBCLAUSES);
-// Feed the solver using Dimacs format, using arrays of int
-// (best option to avoid dependencies on SAT4J IVecInt)
-for (int i = 0; i < NBCLAUSES; i++)
+var input = new int[,]
 {
-    int[] clause = new int[] { 1, -3, 7 }; 
-    solver.addClause(new VecInt(clause)); 
+    {0,0,0,0 },
+    {0,0,1,1 },
+    {0,1,0,0 },
+    {0,1,0,0 },
+};
+
+var variables = new IntVar[input.GetLength(0)];
+for (int i = 0; i < variables.Length; i++)
+    variables[i] = solver.MakeIntVar(0, 1, $"{i}");
+
+for (int i = 0; i < input.GetLength(0); i++)
+{
+    for (int j = 0; j < input.GetLength(1); j++)
+    {
+        solver.Add(solver.MakeLessOrEqual(variables[i] + input[i,j], 0));
+    }
 }
 
-// we are done. Working now on the IProblem interface
-IProblem problem = solver;
-if (problem.isSatisfiable())
-{
 
-}
-else
-{
-}
-System.Console.ReadLine();
+var db = solver.MakePhase(variables, Solver.INT_VAR_SIMPLE, Solver.INT_VALUE_SIMPLE);
+solver.NewSearch(db);
+var solution = solver.NextSolution();
+
+if (!solution)
+    throw new Exception("Solution not found, input file is invalid");
+
+
+
+solver.EndSearch();
