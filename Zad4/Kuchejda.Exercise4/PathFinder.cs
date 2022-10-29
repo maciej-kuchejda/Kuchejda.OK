@@ -12,57 +12,65 @@ namespace Kuchejda.Exercise4
         {
             var length = input.GetLength(0);
 
-            NextStep(input, 0, 0, 0,true, length);
+            var pathList = new List<int[]>();
+            int initialPath = 0;
+
+            NextStep(input, 0, 0,initialPath, pathList, length);
         }
 
-        private void NextStep(char[,] input, int i, int j,int currentPath, bool goUp, int length)
+        private void NextStep(char[,] input, int i, int j,int currentPath, List<int[]> path, int length)
         {
             var @char = input[i, j];
-            var isShorter = CheckResult(currentPath);
+            
+            var pathFound = SetResult(i, j, currentPath, length);
+            if (pathFound)
+                return;
 
-            if (@char == '.' && !isShorter)
+            if (@char == '.')
             {
                 currentPath += 1;
-                SetResult(i, j, currentPath, length);
-                if (goUp)
-                {
-                    Check(input, i + 1, j, currentPath, goUp, length);
-                    Check(input, i, j + 1, currentPath, goUp, length);
-                }
-                else
-                {
-                    Check(input, i - 1, j, currentPath, goUp, length);
-                    Check(input, i, j - 1, currentPath, goUp, length);
-                }
+
+                Check(input, i + 1, j, currentPath, path,  length, i , j);
+                Check(input, i, j + 1, currentPath, path, length, i, j);
             }
             else
             {
-                goUp = !goUp;
                 return;
+            }
+            var elem = path.SingleOrDefault(x => x[0] == i && x[1] == j);
+            if (elem != null)
+            {
+                path.Remove(elem);
             }
         }
 
-        private bool CheckResult(int currentPath)
+        private bool SetResult(int v, int j,int currentPath, int length)
         {
-            var shortestPath = PathFinderResult.ShortestPathReequiredSteps;
-            return shortestPath < currentPath;
-        }
-
-        private void SetResult(int v, int j,int currentPath, int length)
-        {
-            if (v == length-1 && length-1 == j)
+            var last = v == length - 1 && length - 1 == j;
+            if (last)
             {
                 PathFinderResult.ShortestPathReequiredSteps = currentPath;
                 PathFinderResult.Results += 1;
+                return true;
             }
+            return false;
         }
 
-        private void Check(char[,] input, int v, int j, int currentPath, bool goUp, int length)
+        private void Check(char[,] input, int i, int j, int currentPath, List<int[]> path, int length, int orgI, int orgJ)
         {
-            if (v >= length || j >= length)
+            if (i >= length || j >= length || j < 0 || i < 0)
                 return;
+            var lastStep = path.SingleOrDefault(x=> x[0] == i && x[1] == j);
+            if (lastStep != null)
+            {
+                return;
+            }
+            if (input[i, j] == '*')
+                return;
+            if (!path.Any(x=> x[0] == orgI && x[1] == orgJ))
+                path.Add(new int[] { orgI, orgJ });
 
-            NextStep(input, v, j, currentPath, goUp, length);
+            NextStep(input, i, j,currentPath, path, length);
         }
     }
 }
