@@ -12,10 +12,10 @@ namespace Kuchejda.Exercise4
         {
             var length = input.GetLength(0);
 
-            NextStep(input, 0, 0, 0, length);
+            NextStep(input, 0, 0, 0,true, length);
         }
 
-        private void NextStep(char[,] input, int i, int j,int currentPath, int length)
+        private void NextStep(char[,] input, int i, int j,int currentPath, bool goUp, int length)
         {
             var @char = input[i, j];
             var isShorter = CheckResult(currentPath);
@@ -24,11 +24,20 @@ namespace Kuchejda.Exercise4
             {
                 currentPath += 1;
                 SetResult(i, j, currentPath, length);
-                Check(input, i + 1, j, currentPath, length);
-                Check(input, i , j + 1, currentPath, length);
+                if (goUp)
+                {
+                    Check(input, i + 1, j, currentPath, goUp, length);
+                    Check(input, i, j + 1, currentPath, goUp, length);
+                }
+                else
+                {
+                    Check(input, i - 1, j, currentPath, goUp, length);
+                    Check(input, i, j - 1, currentPath, goUp, length);
+                }
             }
             else
             {
+                goUp = !goUp;
                 return;
             }
         }
@@ -48,12 +57,12 @@ namespace Kuchejda.Exercise4
             }
         }
 
-        private void Check(char[,] input, int v, int j, int currentPath, int length)
+        private void Check(char[,] input, int v, int j, int currentPath, bool goUp, int length)
         {
             if (v >= length || j >= length)
                 return;
 
-            NextStep(input, v, j, currentPath, length);
+            NextStep(input, v, j, currentPath, goUp, length);
         }
     }
 }
