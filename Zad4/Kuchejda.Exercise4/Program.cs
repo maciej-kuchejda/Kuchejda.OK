@@ -29,7 +29,6 @@ namespace Kuchejda.Exercise4
 
             Console.BackgroundColor = ConsoleColor.Green;
             Console.WriteLine("Problem resolved!");
-            Console.WriteLine($"Shortest paths: {PathFinderResult.ShortestPathReequiredSteps}");
             Console.WriteLine($"Possible paths: {PathFinderResult.Results}");
             Console.WriteLine($"Time spend {watch.Elapsed.Minutes}m:{watch.Elapsed.Seconds}s:{watch.Elapsed.Milliseconds}ms ");
             Console.WriteLine($"Elapsed ticks: {watch.Elapsed.Ticks}");

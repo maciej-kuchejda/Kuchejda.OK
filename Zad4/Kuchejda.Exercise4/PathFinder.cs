@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Kuchejda.Exercise4
+﻿namespace Kuchejda.Exercise4
 {
     public class PathFinder
     {
@@ -18,9 +12,8 @@ namespace Kuchejda.Exercise4
         private void NextStep(char[,] input, int i, int j,int currentPath, int length)
         {
             var @char = input[i, j];
-            var isShorter = CheckResult(currentPath);
 
-            if (@char == '.' && !isShorter)
+            if (@char == '.')
             {
                 currentPath += 1;
                 SetResult(i, j, currentPath, length);
@@ -33,17 +26,10 @@ namespace Kuchejda.Exercise4
             }
         }
 
-        private bool CheckResult(int currentPath)
-        {
-            var shortestPath = PathFinderResult.ShortestPathReequiredSteps;
-            return shortestPath < currentPath;
-        }
-
         private void SetResult(int v, int j,int currentPath, int length)
         {
             if (v == length-1 && length-1 == j)
             {
-                PathFinderResult.ShortestPathReequiredSteps = currentPath;
                 PathFinderResult.Results += 1;
             }
         }

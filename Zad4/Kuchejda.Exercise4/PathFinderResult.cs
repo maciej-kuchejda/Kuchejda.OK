@@ -10,10 +10,8 @@ namespace Kuchejda.Exercise4
     {
         public static void InitializeWithDefault()
         {
-            ShortestPathReequiredSteps = int.MaxValue;
             Results = 0;
         }
-        public static int ShortestPathReequiredSteps = int.MaxValue;
         public static int Results = 0;
     }
 }
