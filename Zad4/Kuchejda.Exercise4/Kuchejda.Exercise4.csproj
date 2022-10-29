@@ -11,4 +11,10 @@
     <ProjectReference Include="..\..\Shared\Kuchejda.Shared\Kuchejda.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="input.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
