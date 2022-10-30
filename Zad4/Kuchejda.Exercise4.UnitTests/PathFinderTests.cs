@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -32,7 +33,7 @@ namespace Kuchejda.Exercise4.UnitTests
 
             _service.Resolve(@array);
 
-            Assert.AreEqual(3, PathFinderResult.Results);
+            Assert.AreEqual(new BigInteger(3), PathFinderResult.Results);
         }
 
         [Test]
@@ -48,7 +49,7 @@ namespace Kuchejda.Exercise4.UnitTests
 
             _service.Resolve(@array);
 
-            Assert.AreEqual(2, PathFinderResult.Results);
+            Assert.AreEqual(new BigInteger(2), PathFinderResult.Results);
         }
 
         [Test]
@@ -64,7 +65,7 @@ namespace Kuchejda.Exercise4.UnitTests
 
             _service.Resolve(@array);
 
-            Assert.AreEqual(1, PathFinderResult.Results);
+            Assert.AreEqual(new BigInteger(1), PathFinderResult.Results);
         }
 
         [Test]
@@ -80,7 +81,7 @@ namespace Kuchejda.Exercise4.UnitTests
 
             _service.Resolve(@array);
 
-            Assert.AreEqual(2, PathFinderResult.Results);
+            Assert.AreEqual(new BigInteger(2), PathFinderResult.Results);
         }
 
         [Test]
@@ -98,7 +99,7 @@ namespace Kuchejda.Exercise4.UnitTests
 
             _service.Resolve(@array);
 
-            Assert.AreEqual(0, PathFinderResult.Results);
+            Assert.AreEqual(new BigInteger(0), PathFinderResult.Results);
         }
 
         [Test]
@@ -114,7 +115,7 @@ namespace Kuchejda.Exercise4.UnitTests
 
             _service.Resolve(@array);
 
-            Assert.AreEqual(18, PathFinderResult.Results);
+            Assert.AreEqual(new BigInteger(18), PathFinderResult.Results);
         }
 
         [Test]
@@ -132,7 +133,7 @@ namespace Kuchejda.Exercise4.UnitTests
 
             _service.Resolve(@array);
 
-            Assert.AreEqual(1, PathFinderResult.Results);
+            Assert.AreEqual(new BigInteger(1), PathFinderResult.Results);
         }
         [Test]
         public void PathFinder_ValidArray_ValidResult8()
@@ -149,7 +150,7 @@ namespace Kuchejda.Exercise4.UnitTests
 
             _service.Resolve(@array);
 
-            Assert.AreEqual(1, PathFinderResult.Results);
+            Assert.AreEqual(new BigInteger(1), PathFinderResult.Results);
         }
         [Test]
         public void PathFinder_ValidArray_ValidResult9()
@@ -166,7 +167,7 @@ namespace Kuchejda.Exercise4.UnitTests
 
             _service.Resolve(@array);
 
-            Assert.AreEqual(1, PathFinderResult.Results);
+            Assert.AreEqual(new BigInteger(1), PathFinderResult.Results);
         }
 
         [Test]
@@ -184,7 +185,7 @@ namespace Kuchejda.Exercise4.UnitTests
 
             _service.Resolve(@array);
 
-            Assert.AreEqual(0, PathFinderResult.Results);
+            Assert.AreEqual(new BigInteger(0), PathFinderResult.Results);
         }
 
         [Test]
@@ -202,7 +203,7 @@ namespace Kuchejda.Exercise4.UnitTests
 
             _service.Resolve(@array);
 
-            Assert.AreEqual(2, PathFinderResult.Results);
+            Assert.AreEqual(new BigInteger(2), PathFinderResult.Results);
         }
 
         [Test]
@@ -220,7 +221,25 @@ namespace Kuchejda.Exercise4.UnitTests
 
             _service.Resolve(@array);
 
-            Assert.AreEqual(3, PathFinderResult.Results);
+            Assert.AreEqual(new BigInteger(3), PathFinderResult.Results);
+        }
+
+        [Test]
+        public void PathFinder_ValidArray_ValidResult13()
+        {
+            var @array = new char[,]
+            {
+                {'.','.','.','.','.','*' },
+                {'.','*','.','*','.','*' },
+                {'.','*','.','*','.','*' },
+                {'.','*','.','*','.','*' },
+                {'.','*','*','*','.','*' },
+                {'.','.','.','.','.','.' }
+            };
+
+            _service.Resolve(@array);
+
+            Assert.AreEqual(new BigInteger(2), PathFinderResult.Results);
         }
     }
 }

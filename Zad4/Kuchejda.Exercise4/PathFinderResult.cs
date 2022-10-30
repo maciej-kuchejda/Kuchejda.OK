@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,6 +13,6 @@ namespace Kuchejda.Exercise4
         {
             Results = 0;
         }
-        public static int Results = 0;
+        public static BigInteger Results = 0;
     }
 }

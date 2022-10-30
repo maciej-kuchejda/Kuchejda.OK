@@ -1,4 +1,6 @@
-﻿namespace Kuchejda.Exercise4
+﻿using System.Numerics;
+
+namespace Kuchejda.Exercise4
 {
     public class PathFinder
     {
@@ -6,40 +8,30 @@
         {
             var length = input.GetLength(0);
 
-            NextStep(input, 0, 0, 0, length);
+            var @array = new BigInteger[length, length];
+            var res = NumberOfPaths(0, 0, array, input);
+
+            PathFinderResult.Results = res;
         }
-
-        private void NextStep(char[,] input, int i, int j,int currentPath, int length)
+        private BigInteger NumberOfPaths(int n, int m, BigInteger[,] DP, char[,] chars)
         {
-            var @char = input[i, j];
+            int length = chars.GetLength(0);
 
-            if (@char == '.')
+            if (n == length - 1 && m == length-1)
+                return DP[n, m] = 1;
+
+
+            if (DP[n, m] == 0 && chars[n, m] != '*')
             {
-                currentPath += 1;
-                SetResult(i, j, currentPath, length);
-                Check(input, i + 1, j, currentPath, length);
-                Check(input, i , j + 1, currentPath, length);
+                BigInteger first = 0; BigInteger second = 0;
+                if (n < length - 1)
+                    first = chars[n + 1, m] == '*' ? 0 : NumberOfPaths(n + 1, m, DP, chars);
+                if (m < length - 1)
+                    second = chars[n, m + 1] == '*' ? 0 : NumberOfPaths(n, m + 1, DP, chars);
+                DP[n, m] = first + second;
             }
-            else
-            {
-                return;
-            }
-        }
 
-        private void SetResult(int v, int j,int currentPath, int length)
-        {
-            if (v == length-1 && length-1 == j)
-            {
-                PathFinderResult.Results += 1;
-            }
-        }
-
-        private void Check(char[,] input, int v, int j, int currentPath, int length)
-        {
-            if (v >= length || j >= length)
-                return;
-
-            NextStep(input, v, j, currentPath, length);
+            return DP[n, m];
         }
     }
 }

@@ -7,6 +7,7 @@ namespace Kuchejda.Exercise4
     {
         public static void Main()
         {
+            //Zadanie 4 - wariant 4
             //https://github.com/maciej-kuchejda/Kuchejda.OK
             var path = "./input.txt";
             //initialize
@@ -30,7 +31,7 @@ namespace Kuchejda.Exercise4
             Console.BackgroundColor = ConsoleColor.Green;
             Console.WriteLine("Problem resolved!");
             Console.WriteLine($"Possible paths: {PathFinderResult.Results}");
-            Console.WriteLine($"Time spend {watch.Elapsed.Minutes}m:{watch.Elapsed.Seconds}s:{watch.Elapsed.Milliseconds}ms ");
+            Console.WriteLine($"Time spent resolving: {watch.Elapsed.Minutes}m:{watch.Elapsed.Seconds}s:{watch.Elapsed.Milliseconds}ms ");
             Console.WriteLine($"Elapsed ticks: {watch.Elapsed.Ticks}");
             Console.BackgroundColor = ConsoleColor.Black;
         }
@@ -43,7 +44,7 @@ namespace Kuchejda.Exercise4
             watch.Stop();
             Console.BackgroundColor = ConsoleColor.Green;
             Console.WriteLine("Import success!");
-            Console.WriteLine($"Time spend {watch.Elapsed.Minutes}m:{watch.Elapsed.Seconds}s:{watch.Elapsed.Milliseconds}ms ");
+            Console.WriteLine($"Time spent on import {watch.Elapsed.Minutes}m:{watch.Elapsed.Seconds}s:{watch.Elapsed.Milliseconds}ms ");
             Console.BackgroundColor = ConsoleColor.Black;
             return result;
         }
