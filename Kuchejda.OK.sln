@@ -29,6 +29,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Exercise6", "Exercise6", "{
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kuchejda.Exercise6", "Zad6\Kuchejda.Exercise6\Kuchejda.Exercise6.csproj", "{94037F3C-B40E-4BFD-9250-0FF3796E3C1B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Exercise5", "Exercise5", "{480851F4-D37E-47D1-91F5-537B0A6FF259}"
+	ProjectSection(SolutionItems) = preProject
+		Zad5\Zadanie5-wersja4b.lp = Zad5\Zadanie5-wersja4b.lp
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
